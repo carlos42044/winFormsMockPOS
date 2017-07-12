@@ -32,30 +32,30 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.add = new System.Windows.Forms.Button();
             this.clear = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.username = new System.Windows.Forms.Label();
             this.date = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.required = new System.Windows.Forms.Label();
-            this.tendered = new System.Windows.Forms.TextBox();
-            this.pay = new System.Windows.Forms.Button();
-            this.totalLabel = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.totalLabel = new System.Windows.Forms.Label();
+            this.pay = new System.Windows.Forms.Button();
+            this.tendered = new System.Windows.Forms.TextBox();
+            this.required = new System.Windows.Forms.Label();
             this.process = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.flowLayoutPanel2.SuspendLayout();
-            this.flowLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,26 +93,14 @@
             this.tabPage1.Text = "Cart";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // flowLayoutPanel3
             // 
-            this.tabPage2.Controls.Add(this.dataGridView2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(452, 250);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Trans";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.Size = new System.Drawing.Size(456, 253);
-            this.dataGridView2.TabIndex = 0;
+            this.flowLayoutPanel3.Controls.Add(this.add);
+            this.flowLayoutPanel3.Controls.Add(this.clear);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(218, 26);
+            this.flowLayoutPanel3.TabIndex = 4;
             // 
             // add
             // 
@@ -133,6 +121,27 @@
             this.clear.Text = "Clear";
             this.clear.UseVisualStyleBackColor = true;
             this.clear.Click += new System.EventHandler(this.clear_Click);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.dataGridView2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(452, 250);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Trans";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersVisible = false;
+            this.dataGridView2.Size = new System.Drawing.Size(456, 253);
+            this.dataGridView2.TabIndex = 0;
             // 
             // username
             // 
@@ -169,79 +178,6 @@
             this.flowLayoutPanel2.Size = new System.Drawing.Size(522, 337);
             this.flowLayoutPanel2.TabIndex = 8;
             // 
-            // flowLayoutPanel3
-            // 
-            this.flowLayoutPanel3.Controls.Add(this.add);
-            this.flowLayoutPanel3.Controls.Add(this.clear);
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 3);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(218, 26);
-            this.flowLayoutPanel3.TabIndex = 4;
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // required
-            // 
-            this.required.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.required.AutoSize = true;
-            this.required.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.required.Location = new System.Drawing.Point(235, 6);
-            this.required.Name = "required";
-            this.required.Size = new System.Drawing.Size(58, 16);
-            this.required.TabIndex = 8;
-            this.required.Text = "required";
-            this.required.Visible = false;
-            // 
-            // tendered
-            // 
-            this.tendered.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tendered.Location = new System.Drawing.Point(171, 4);
-            this.tendered.Name = "tendered";
-            this.tendered.Size = new System.Drawing.Size(58, 20);
-            this.tendered.TabIndex = 7;
-            this.tendered.Text = "0.00";
-            this.tendered.Visible = false;
-            this.tendered.TextChanged += new System.EventHandler(this.tendered_TextChanged);
-            // 
-            // pay
-            // 
-            this.pay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pay.Location = new System.Drawing.Point(90, 3);
-            this.pay.Name = "pay";
-            this.pay.Size = new System.Drawing.Size(75, 23);
-            this.pay.TabIndex = 0;
-            this.pay.Text = "Pay";
-            this.pay.UseVisualStyleBackColor = true;
-            this.pay.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // totalLabel
-            // 
-            this.totalLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.totalLabel.AutoSize = true;
-            this.totalLabel.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.totalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalLabel.Location = new System.Drawing.Point(48, 6);
-            this.totalLabel.Name = "totalLabel";
-            this.totalLabel.Size = new System.Drawing.Size(36, 16);
-            this.totalLabel.TabIndex = 6;
-            this.totalLabel.Text = "0.00";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 6);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 16);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Total";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.label2);
@@ -255,6 +191,65 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(519, 32);
             this.flowLayoutPanel1.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 6);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(39, 16);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Total";
+            // 
+            // totalLabel
+            // 
+            this.totalLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.totalLabel.AutoSize = true;
+            this.totalLabel.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.totalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalLabel.Location = new System.Drawing.Point(48, 6);
+            this.totalLabel.Name = "totalLabel";
+            this.totalLabel.Size = new System.Drawing.Size(36, 16);
+            this.totalLabel.TabIndex = 6;
+            this.totalLabel.Text = "0.00";
+            // 
+            // pay
+            // 
+            this.pay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pay.Location = new System.Drawing.Point(90, 3);
+            this.pay.Name = "pay";
+            this.pay.Size = new System.Drawing.Size(75, 23);
+            this.pay.TabIndex = 0;
+            this.pay.Text = "Pay";
+            this.pay.UseVisualStyleBackColor = true;
+            this.pay.Click += new System.EventHandler(this.button1_Click);
+            this.pay.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pay_MouseUp);
+            // 
+            // tendered
+            // 
+            this.tendered.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tendered.Location = new System.Drawing.Point(171, 4);
+            this.tendered.Name = "tendered";
+            this.tendered.Size = new System.Drawing.Size(58, 20);
+            this.tendered.TabIndex = 7;
+            this.tendered.Text = "0.00";
+            this.tendered.Visible = false;
+            this.tendered.TextChanged += new System.EventHandler(this.tendered_TextChanged);
+            // 
+            // required
+            // 
+            this.required.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.required.AutoSize = true;
+            this.required.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.required.Location = new System.Drawing.Point(235, 6);
+            this.required.Name = "required";
+            this.required.Size = new System.Drawing.Size(58, 16);
+            this.required.TabIndex = 8;
+            this.required.Text = "required";
+            this.required.Visible = false;
             // 
             // process
             // 
@@ -279,23 +274,29 @@
             this.cancel.Visible = false;
             this.cancel.Click += new System.EventHandler(this.cancel_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(525, 339);
             this.Controls.Add(this.flowLayoutPanel2);
+            this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "WinFormsMockPos";
             this.Load += new System.EventHandler(this.WinFormsMockPOS_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.flowLayoutPanel3.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
-            this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
