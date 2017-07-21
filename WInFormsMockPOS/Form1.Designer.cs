@@ -49,6 +49,7 @@
             this.process = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -57,6 +58,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -75,7 +77,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(3, 19);
+            this.tabControl1.Location = new System.Drawing.Point(3, 48);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(460, 279);
@@ -171,6 +173,7 @@
             // 
             this.flowLayoutPanel2.Controls.Add(this.username);
             this.flowLayoutPanel2.Controls.Add(this.date);
+            this.flowLayoutPanel2.Controls.Add(this.pictureBox1);
             this.flowLayoutPanel2.Controls.Add(this.tabControl1);
             this.flowLayoutPanel2.Controls.Add(this.flowLayoutPanel1);
             this.flowLayoutPanel2.Location = new System.Drawing.Point(1, 1);
@@ -187,7 +190,7 @@
             this.flowLayoutPanel1.Controls.Add(this.required);
             this.flowLayoutPanel1.Controls.Add(this.process);
             this.flowLayoutPanel1.Controls.Add(this.cancel);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 304);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 333);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(519, 32);
             this.flowLayoutPanel1.TabIndex = 7;
@@ -279,6 +282,14 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(111, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(159, 39);
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -299,6 +310,7 @@
             this.flowLayoutPanel2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -324,6 +336,7 @@
         private System.Windows.Forms.Label required;
         private System.Windows.Forms.Button process;
         private System.Windows.Forms.Button cancel;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
