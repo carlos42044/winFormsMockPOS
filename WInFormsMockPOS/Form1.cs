@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Text;
+using System.Windows.Media;
 
 namespace WInFormsMockPOS
 {
@@ -45,19 +48,47 @@ namespace WInFormsMockPOS
             timer1.Start();
             createTableHeaders();
             pay.Enabled = false;
-
-            this.Refresh();
+            pictureBox1.Image = CreateImageFromText("hello");
+           // pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
         }
 
-        private void ImagePaint(object sender, PaintEventArgs e)
+   
+        private Bitmap CreateImageFromText(string Text)
         {
-            Image img = TextToImage.DrawText("world", new Font(FontFamily.GenericSansSerif,
-             12.0F, FontStyle.Bold), Color.FromName("BurlyWood"), Color.FromName("White"));
+            // Create the Font object for the image text drawing.
+            Font textFont = new Font("Arial", 12, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 
-            // Draw image to screen.
-            Point corner = new Point(0, 0);
-            e.Graphics.DrawImage(img, corner);
+            Bitmap ImageObject = new Bitmap(51, 16);
+            // Add the anti aliasing or color settings.
+            Graphics GraphicsObject = Graphics.FromImage(ImageObject);
+
+            // Set Background color
+            //GraphicsObject.Clear(System.Drawing.Color.White);
+            // to specify no aliasing
+            GraphicsObject.SmoothingMode = SmoothingMode.Default;
+            GraphicsObject.TextRenderingHint = TextRenderingHint.SystemDefault;
+            GraphicsObject.DrawString(Text, textFont, new SolidBrush(System.Drawing.Color.Black), 0, 0);
+            GraphicsObject.Flush();
+
+            return (ImageObject);
         }
+
+        //private void ImagePaint(object sender, PaintEventArgs e)
+        //{
+        //    Image img = TextToImage.DrawText("world", new Font(FontFamily.GenericSansSerif,
+        //     12.0F, FontStyle.Bold), Color.FromName("BurlyWood"), Color.FromName("White"));
+
+        //    using (var g = Graphics.FromImage(pictureBox1.Image))
+        //    {
+        //        g.DrawEllipse(Pens.Blue, 10, 10, 100, 100);
+        //        pictureBox1.Refresh();
+        //    }
+        //    // Draw image to screen.
+        //    Point corner = new Point(0, 0);
+        //    //e.Graphics.DrawImage(img, corner);
+        //   // pictureBox1.Refresh();
+        //    MessageBox.Show("the paintevent was triggered");
+        //}
 
         private void createTableHeaders()
         {
