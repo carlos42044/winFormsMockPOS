@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace WInFormsMockPOS
 {
@@ -28,6 +29,7 @@ namespace WInFormsMockPOS
         public static string TenderEntered { get; set; }
         public static string Change { get; set; }
         public static string Required { get; set; }
+        public static bool processClicked = false;
 
         // Global variable to hold total
         public static double runningTotal = 0.00;
@@ -43,6 +45,18 @@ namespace WInFormsMockPOS
             timer1.Start();
             createTableHeaders();
             pay.Enabled = false;
+
+            this.Refresh();
+        }
+
+        private void ImagePaint(object sender, PaintEventArgs e)
+        {
+            Image img = TextToImage.DrawText("world", new Font(FontFamily.GenericSansSerif,
+             12.0F, FontStyle.Bold), Color.FromName("BurlyWood"), Color.FromName("White"));
+
+            // Draw image to screen.
+            Point corner = new Point(0, 0);
+            e.Graphics.DrawImage(img, corner);
         }
 
         private void createTableHeaders()
@@ -126,12 +140,14 @@ namespace WInFormsMockPOS
             Total = String.Format("{0:#.00}", runningTotal);
             totalLabel.Text = Total;
             updateRequired();
+            this.Refresh();
+
         }
 
         // Updates the "required: xx.xx" text box
         public void updateRequired()
         {
-            Required = "required: " + String.Format("{0:#.00}", (0.0 - runningTotal).ToString());
+            Required = "required: " + String.Format("{0:#.00}", (0.0 - runningTotal));
             required.Text = Required;
             required.ForeColor = System.Drawing.Color.Red;
 
@@ -236,7 +252,7 @@ namespace WInFormsMockPOS
         }
 
         //clear
-        public  void clearAll()
+        public void clearAll()
         {
             table.Rows.Clear();
             runningTotal = 0;
@@ -272,20 +288,28 @@ namespace WInFormsMockPOS
                 //MessageBox.Show("before handing control over to another form\nthetotal is: " + Total + "Required = " + Required);
                 Popup pop = new Popup();
                 pop.ShowDialog();
-                clearAll();
-                runningTotal = 0;
-                totalLabel.Text = "0.00";
-                tendered.Text = "0.00";
-                required.Visible = false;
-                process.Visible = false;
-                cancel.Visible = false;
-                tendered.Visible = false;
-                table.Rows.Clear();
+
+                if (processClicked)
+                {
+                    clearAll();
+                    runningTotal = 0;
+                    totalLabel.Text = "0.00";
+                    tendered.Text = "0.00";
+                    required.Visible = false;
+                    process.Visible = false;
+                    cancel.Visible = false;
+                    tendered.Visible = false;
+                    table.Rows.Clear();
 
 
-                add.Enabled = true;
-                clear.Enabled = true;
-                pay.Enabled = false;
+                    add.Enabled = true;
+                    clear.Enabled = true;
+                    pay.Enabled = false;
+                } else
+                {
+                    pay.Enabled = true;
+                }
+                
             }
              
             

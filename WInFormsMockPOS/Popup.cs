@@ -28,6 +28,7 @@ namespace WInFormsMockPOS
           //  MessageBox.Show(total + " required: " + req + "\nStamp: " + stamp + "\nuser: " + user + "\ntotal: " + total + "\nchange: " + change);
             required.Visible = true;
             required.Text = req;
+            process.Enabled = false;
         }
 
         private void process_Click(object sender, EventArgs e)
@@ -36,7 +37,8 @@ namespace WInFormsMockPOS
             string change = String.Format("{0:#.00}", Math.Abs(runningTotal - Convert.ToDouble(tenderTextBox.Text)).ToString());
             string total = String.Format("{0:#.00}", runningTotal.ToString());
 
-            Form1.table2.Rows.Add(new Object[] { stamp, user, total, String.Format("{0:#.00}", String.Format("{0:#.00}",tenderTextBox.Text)), change });        
+            Form1.table2.Rows.Add(new Object[] { stamp, user, total, String.Format("{0:#.00}", String.Format("{0:#.00}",tenderTextBox.Text)), change });
+            Form1.processClicked = true;
             this.Close();
         }
 
@@ -47,6 +49,9 @@ namespace WInFormsMockPOS
 
         private void tenderTextBox_TextChanged(object sender, EventArgs e)
         {
+            required.Text = req;
+            required.ForeColor = System.Drawing.Color.Red;
+
             try
             {
                 double currentEntered = Convert.ToDouble(tenderTextBox.Text);
