@@ -77,7 +77,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(3, 48);
+            this.tabControl1.Location = new System.Drawing.Point(3, 38);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(460, 279);
@@ -150,7 +150,7 @@
             this.username.AutoSize = true;
             this.username.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.username.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.username.Location = new System.Drawing.Point(3, 0);
+            this.username.Location = new System.Drawing.Point(130, 0);
             this.username.Name = "username";
             this.username.Size = new System.Drawing.Size(51, 16);
             this.username.TabIndex = 3;
@@ -163,7 +163,7 @@
             this.date.AutoSize = true;
             this.date.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.date.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.date.Location = new System.Drawing.Point(60, 0);
+            this.date.Location = new System.Drawing.Point(187, 0);
             this.date.Name = "date";
             this.date.Size = new System.Drawing.Size(45, 16);
             this.date.TabIndex = 4;
@@ -171,9 +171,9 @@
             // 
             // flowLayoutPanel2
             // 
+            this.flowLayoutPanel2.Controls.Add(this.pictureBox1);
             this.flowLayoutPanel2.Controls.Add(this.username);
             this.flowLayoutPanel2.Controls.Add(this.date);
-            this.flowLayoutPanel2.Controls.Add(this.pictureBox1);
             this.flowLayoutPanel2.Controls.Add(this.tabControl1);
             this.flowLayoutPanel2.Controls.Add(this.flowLayoutPanel1);
             this.flowLayoutPanel2.Location = new System.Drawing.Point(1, 1);
@@ -190,7 +190,7 @@
             this.flowLayoutPanel1.Controls.Add(this.required);
             this.flowLayoutPanel1.Controls.Add(this.process);
             this.flowLayoutPanel1.Controls.Add(this.cancel);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 333);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 323);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(519, 32);
             this.flowLayoutPanel1.TabIndex = 7;
@@ -284,9 +284,10 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(111, 3);
+            this.pictureBox1.Enabled = false;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(159, 39);
+            this.pictureBox1.Size = new System.Drawing.Size(121, 29);
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
