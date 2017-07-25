@@ -34,6 +34,24 @@ namespace WInFormsMockPOS
         public static string Required { get; set; }
         public static bool processClicked = false;
 
+        public bool ButtonIsVisible
+        {
+            get { return nameBtn.Visible; }
+            set { nameBtn.Visible = value; }
+        }
+
+        public bool LabelIsVisible
+        {
+            get { return username.Visible; }
+            set { username.Visible = value; }
+        }
+
+        public bool ImageIsVisible
+        {
+            get { return pictureBox1.Visible; }
+            set { pictureBox1.Visible = value; }
+        }
+
         // Global variable to hold total
         public static double runningTotal = 0.00;
 
@@ -46,10 +64,15 @@ namespace WInFormsMockPOS
             User = currentUser.getFirstName();
             username.Text = currentUser.getFirstName();
             timer1.Start();
-            createTableHeaders();
+            try
+            {
+                createTableHeaders();
+            } catch (Exception e)
+            {
+
+            }
             pay.Enabled = false;
             pictureBox1.Image = CreateImageFromText("hello");
-           // pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
         }
 
    
@@ -72,23 +95,6 @@ namespace WInFormsMockPOS
 
             return (ImageObject);
         }
-
-        //private void ImagePaint(object sender, PaintEventArgs e)
-        //{
-        //    Image img = TextToImage.DrawText("world", new Font(FontFamily.GenericSansSerif,
-        //     12.0F, FontStyle.Bold), Color.FromName("BurlyWood"), Color.FromName("White"));
-
-        //    using (var g = Graphics.FromImage(pictureBox1.Image))
-        //    {
-        //        g.DrawEllipse(Pens.Blue, 10, 10, 100, 100);
-        //        pictureBox1.Refresh();
-        //    }
-        //    // Draw image to screen.
-        //    Point corner = new Point(0, 0);
-        //    //e.Graphics.DrawImage(img, corner);
-        //   // pictureBox1.Refresh();
-        //    MessageBox.Show("the paintevent was triggered");
-        //}
 
         private void createTableHeaders()
         {
@@ -158,6 +164,8 @@ namespace WInFormsMockPOS
         // "add" item button
         private void button2_Click(object sender, EventArgs e)
         {
+            LabelIsVisible = false;
+
             pay.Enabled = true;
             Random rnd = new Random();
             Product newItem = items[rnd.Next(0, items.Length)];
@@ -344,6 +352,17 @@ namespace WInFormsMockPOS
             }
              
             
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form settingForm = new Settings(this);
+            settingForm.ShowDialog();
         }
     }
 }

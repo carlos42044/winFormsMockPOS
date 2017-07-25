@@ -40,6 +40,7 @@
             this.username = new System.Windows.Forms.Label();
             this.date = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.totalLabel = new System.Windows.Forms.Label();
@@ -49,7 +50,10 @@
             this.process = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.nameBtn = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -57,8 +61,10 @@
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.flowLayoutPanel2.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -77,7 +83,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(3, 38);
+            this.tabControl1.Location = new System.Drawing.Point(3, 44);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(460, 279);
@@ -122,7 +128,6 @@
             this.clear.TabIndex = 3;
             this.clear.Text = "Clear";
             this.clear.UseVisualStyleBackColor = true;
-            this.clear.Click += new System.EventHandler(this.clear_Click);
             // 
             // tabPage2
             // 
@@ -150,7 +155,7 @@
             this.username.AutoSize = true;
             this.username.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.username.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.username.Location = new System.Drawing.Point(130, 0);
+            this.username.Location = new System.Drawing.Point(7, 8);
             this.username.Name = "username";
             this.username.Size = new System.Drawing.Size(51, 16);
             this.username.TabIndex = 3;
@@ -163,7 +168,7 @@
             this.date.AutoSize = true;
             this.date.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.date.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.date.Location = new System.Drawing.Point(187, 0);
+            this.date.Location = new System.Drawing.Point(120, 8);
             this.date.Name = "date";
             this.date.Size = new System.Drawing.Size(45, 16);
             this.date.TabIndex = 4;
@@ -171,15 +176,24 @@
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Controls.Add(this.pictureBox1);
-            this.flowLayoutPanel2.Controls.Add(this.username);
-            this.flowLayoutPanel2.Controls.Add(this.date);
+            this.flowLayoutPanel2.ContextMenuStrip = this.contextMenuStrip1;
+            this.flowLayoutPanel2.Controls.Add(this.panel1);
             this.flowLayoutPanel2.Controls.Add(this.tabControl1);
             this.flowLayoutPanel2.Controls.Add(this.flowLayoutPanel1);
             this.flowLayoutPanel2.Location = new System.Drawing.Point(1, 1);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(522, 337);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(528, 366);
             this.flowLayoutPanel2.TabIndex = 8;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Enabled = false;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(72, 29);
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
             // 
             // flowLayoutPanel1
             // 
@@ -190,7 +204,7 @@
             this.flowLayoutPanel1.Controls.Add(this.required);
             this.flowLayoutPanel1.Controls.Add(this.process);
             this.flowLayoutPanel1.Controls.Add(this.cancel);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 323);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 329);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(519, 32);
             this.flowLayoutPanel1.TabIndex = 7;
@@ -282,20 +296,46 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // pictureBox1
+            // panel1
             // 
-            this.pictureBox1.Enabled = false;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(121, 29);
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
+            this.panel1.Controls.Add(this.date);
+            this.panel1.Controls.Add(this.username);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.nameBtn);
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(197, 35);
+            this.panel1.TabIndex = 9;
+            // 
+            // nameBtn
+            // 
+            this.nameBtn.Location = new System.Drawing.Point(4, 5);
+            this.nameBtn.Name = "nameBtn";
+            this.nameBtn.Size = new System.Drawing.Size(75, 23);
+            this.nameBtn.TabIndex = 10;
+            this.nameBtn.Text = "button1";
+            this.nameBtn.UseVisualStyleBackColor = true;
+            this.nameBtn.Visible = false;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingsToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(117, 26);
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(525, 339);
+            this.ClientSize = new System.Drawing.Size(530, 367);
             this.Controls.Add(this.flowLayoutPanel2);
             this.KeyPreview = true;
             this.Name = "Form1";
@@ -308,10 +348,12 @@
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -324,7 +366,6 @@
         private System.Windows.Forms.Button add;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Label username;
         private System.Windows.Forms.Label date;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
@@ -337,7 +378,12 @@
         private System.Windows.Forms.Label required;
         private System.Windows.Forms.Button process;
         private System.Windows.Forms.Button cancel;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.Label username;
         private System.Windows.Forms.PictureBox pictureBox1;
+        protected System.Windows.Forms.Button nameBtn;
     }
 }
 
