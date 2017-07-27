@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WInFormsMockPOS", "WInFormsMockPOS\WInFormsMockPOS.csproj", "{52AA9128-FD2D-464E-B46B-CAB944B6FCE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSettingsLib", "..\ApplicationSettings\ApplicationSettings\AppSettingsLib.csproj", "{15DEB9FB-6377-46D8-B2CB-AECF0E52DDB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{52AA9128-FD2D-464E-B46B-CAB944B6FCE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52AA9128-FD2D-464E-B46B-CAB944B6FCE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52AA9128-FD2D-464E-B46B-CAB944B6FCE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15DEB9FB-6377-46D8-B2CB-AECF0E52DDB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15DEB9FB-6377-46D8-B2CB-AECF0E52DDB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15DEB9FB-6377-46D8-B2CB-AECF0E52DDB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15DEB9FB-6377-46D8-B2CB-AECF0E52DDB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

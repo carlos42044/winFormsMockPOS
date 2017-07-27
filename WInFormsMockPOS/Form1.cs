@@ -11,12 +11,15 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Windows.Media;
+using AppSettingsLib;
 
 namespace WInFormsMockPOS
 {
     public partial class Form1 : Form
     {
-        // Variables for Employee and Product objects
+        string FILENAME = @"C:\Users\CarlosF\Documents\Visual Studio 2017\Projects\WInFormsMockPOS\WInFormsMockPOS\settings.config";
+      
+            // Variables for Employee and Product objects
         Employee[] user = new Employee[5];
         Product[] items = new Product[6];
         Employee currentUser;

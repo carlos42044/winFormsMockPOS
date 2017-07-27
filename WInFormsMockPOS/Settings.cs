@@ -7,11 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AppSettingsLib;
 
 namespace WInFormsMockPOS
 {
     public partial class Settings : Form
     {
+        string FILENAME = @"C:\Users\CarlosF\Documents\Visual Studio 2017\Projects\WInFormsMockPOS\WInFormsMockPOS\settings.config";
+        Config config = new Config();
+
         public Form1 parent;
 
         public Settings(Form1 form1)
