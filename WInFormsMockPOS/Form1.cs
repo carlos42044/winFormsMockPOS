@@ -17,9 +17,10 @@ namespace WInFormsMockPOS
 {
     public partial class Form1 : Form
     {
-        string FILENAME = @"C:\Users\CarlosF\Documents\Visual Studio 2017\Projects\WInFormsMockPOS\WInFormsMockPOS\settings.config";
-      
-            // Variables for Employee and Product objects
+        string filename = @"C:\Users\CarlosF\Documents\Visual Studio 2017\Projects\WInFormsMockPOS\WInFormsMockPOS\settings.config";
+        Config config = new Config();
+
+        // Variables for Employee and Product objects
         Employee[] user = new Employee[5];
         Product[] items = new Product[6];
         Employee currentUser;
@@ -55,6 +56,12 @@ namespace WInFormsMockPOS
             set { pictureBox1.Visible = value; }
         }
 
+        public bool DropIsVisble
+        {
+            get { return comboBox1.Visible; }
+            set { comboBox1.Visible = value; }
+        }
+
         // Global variable to hold total
         public static double runningTotal = 0.00;
 
@@ -75,16 +82,42 @@ namespace WInFormsMockPOS
 
             }
             pay.Enabled = false;
-            pictureBox1.Image = CreateImageFromText("hello");
+
+            // setting usernames for image, button, dropdown
+            pictureBox1.Image = CreateImageFromText(User);
+            pictureBox1.Enabled = true;
+            nameBtn.Text = User;
+            comboBox1.Items.Add(User);
+            comboBox1.SelectedIndex = 0;
+
+            string initUser = User;
+            foreach(Employee employee in user)
+            {
+                if(!(employee.Equals(initUser)))
+                {
+                    comboBox1.Items.Add(employee.getFirstName());
+                }
+            }
+
+            config.Read(filename);
+
+            ButtonIsVisible = stringToBool((string)config.Get("ButtonIsVisible"));  
+            LabelIsVisible = stringToBool((string)config.Get("LabelIsVisible"));
+            ImageIsVisible = stringToBool((string)config.Get("ImageIsVisible"));
+            DropIsVisble = stringToBool((string)config.Get("DropIsVisible"));
         }
 
-   
+        public bool stringToBool(string str)
+        {
+            return str.Equals("true") ? true : false;
+        }
+
         private Bitmap CreateImageFromText(string Text)
         {
             // Create the Font object for the image text drawing.
             Font textFont = new Font("Arial", 12, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 
-            Bitmap ImageObject = new Bitmap(51, 16);
+            Bitmap ImageObject = new Bitmap(150, 40);
             // Add the anti aliasing or color settings.
             Graphics GraphicsObject = Graphics.FromImage(ImageObject);
 
@@ -167,7 +200,7 @@ namespace WInFormsMockPOS
         // "add" item button
         private void button2_Click(object sender, EventArgs e)
         {
-            LabelIsVisible = false;
+            //LabelIsVisible = false;
 
             pay.Enabled = true;
             Random rnd = new Random();
@@ -198,16 +231,21 @@ namespace WInFormsMockPOS
         // "Pay" button, mainly changes Enabled property of buttons and visibility of pay fields etc..
         private void button1_Click(object sender, EventArgs e)
         {
+            if( config.Get("popupPay").Equals("true")) {
+                popupWindow();
+            } else
+            {
+                add.Enabled = false;
+                clear.Enabled = false;
+                pay.Enabled = false;
+                tendered.Visible = true;
+                required.Visible = true;
+                process.Visible = true;
+                cancel.Visible = true;
 
-            add.Enabled = false;
-            clear.Enabled = false;
-            pay.Enabled = false;
-            tendered.Visible = true;
-            required.Visible = true;
-            process.Visible = true;
-            cancel.Visible = true;
-
-            updateRequired();
+                updateRequired();
+            }
+           
             
         }
 
@@ -320,41 +358,47 @@ namespace WInFormsMockPOS
             {
                 //ctrHeld = true;
                 //MessageBox.Show("ctrl and leftClick");
-                add.Enabled = false;
-                clear.Enabled = false;
-                pay.Enabled = false;
-                tendered.Visible = false;
-                required.Visible = false;
-                process.Visible = false;
-                cancel.Visible = false;
-                //MessageBox.Show("before handing control over to another form\nthetotal is: " + Total + "Required = " + Required);
-                Popup pop = new Popup();
-                pop.ShowDialog();
-
-                if (processClicked)
-                {
-                    clearAll();
-                    runningTotal = 0;
-                    totalLabel.Text = "0.00";
-                    tendered.Text = "0.00";
-                    required.Visible = false;
-                    process.Visible = false;
-                    cancel.Visible = false;
-                    tendered.Visible = false;
-                    table.Rows.Clear();
-
-
-                    add.Enabled = true;
-                    clear.Enabled = true;
-                    pay.Enabled = false;
-                } else
-                {
-                    pay.Enabled = true;
-                }
+                
                 
             }
              
             
+        }
+
+        private void popupWindow()
+        {
+            add.Enabled = false;
+            clear.Enabled = false;
+            pay.Enabled = false;
+            tendered.Visible = false;
+            required.Visible = false;
+            process.Visible = false;
+            cancel.Visible = false;
+            Popup pop = new Popup();
+            pop.ShowDialog();
+            config.Read(filename);
+
+            if (processClicked)
+            {
+                clearAll();
+                runningTotal = 0;
+                totalLabel.Text = "0.00";
+                tendered.Text = "0.00";
+                required.Visible = false;
+                process.Visible = false;
+                cancel.Visible = false;
+                tendered.Visible = false;
+                table.Rows.Clear();
+
+
+                add.Enabled = true;
+                clear.Enabled = true;
+                pay.Enabled = false;
+            }
+            else
+            {
+                pay.Enabled = true;
+            }
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -366,6 +410,41 @@ namespace WInFormsMockPOS
         {
             Form settingForm = new Settings(this);
             settingForm.ShowDialog();
+            config.Read(filename);
+
+            // Have to update image  box and combobox
+            pictureBox1.Image = CreateImageFromText(User);
+            comboBox1.SelectedIndex = comboBox1.FindString(User);
+            nameBtn.Text = User;
+            username.Text = User;
+
+            ButtonIsVisible = stringToBool((string)config.Get("ButtonIsVisible"));
+            LabelIsVisible = stringToBool((string)config.Get("LabelIsVisible"));
+            ImageIsVisible = stringToBool((string)config.Get("ImageIsVisible"));
+            DropIsVisble = stringToBool((string)config.Get("DropIsVisible"));
+            
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            currentUser = user[new Random().Next(0, 5)];
+            User = currentUser.getFirstName();
+            pictureBox1.Image = CreateImageFromText(User);
+
+        }
+
+        private void nameBtn_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            currentUser = user[new Random().Next(0, 5)];
+            User = currentUser.getFirstName();
+            nameBtn.Text = User;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           User = comboBox1.SelectedItem.ToString();
         }
     }
 }

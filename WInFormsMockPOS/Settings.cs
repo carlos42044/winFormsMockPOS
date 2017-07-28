@@ -13,7 +13,7 @@ namespace WInFormsMockPOS
 {
     public partial class Settings : Form
     {
-        string FILENAME = @"C:\Users\CarlosF\Documents\Visual Studio 2017\Projects\WInFormsMockPOS\WInFormsMockPOS\settings.config";
+        string filename = @"C:\Users\CarlosF\Documents\Visual Studio 2017\Projects\WInFormsMockPOS\WInFormsMockPOS\settings.config";
         Config config = new Config();
 
         public Form1 parent;
@@ -22,39 +22,113 @@ namespace WInFormsMockPOS
         {
             InitializeComponent();
             parent = form1;
-        }
-
-        private void radioLabel_CheckedChanged(object sender, EventArgs e)
-        {
-            parent.ButtonIsVisible = false;
-            parent.LabelIsVisible = true;
-            parent.ImageIsVisible = false;
+            config.Read(filename);
+            setRadioChecks();
 
         }
+
 
         private void radioButton_CheckedChanged(object sender, EventArgs e)
         {
-            parent.ButtonIsVisible = true;
-            parent.LabelIsVisible = false;
-            parent.ImageIsVisible = false;
-
+            toggleRadio("ButtonIsVisible");
         }
 
         private void radioDropdown_CheckedChanged(object sender, EventArgs e)
         {
-            // add dropdowsn is visible
-            parent.ButtonIsVisible = false;
-            parent.LabelIsVisible = false;
-            parent.ImageIsVisible = false;
-          
+            toggleRadio("DropIsVisible");
         }
 
         private void radioImage_CheckedChanged(object sender, EventArgs e)
         {
-            parent.ButtonIsVisible = false;
-            parent.LabelIsVisible = false;
-            parent.ImageIsVisible = true;
-            Properties.Settings.Default.Save();
+            toggleRadio("ImageIsVisible");
+        }
+
+        public void toggleRadio(string str) 
+        {
+            foreach(KeyValuePair<string, object> item in config.GetDict().ToList())
+            {
+                if (item.Key.Equals(str))
+                {
+                    config.Set(item.Key, "true");
+                   // MessageBox.Show(str + " is now true");
+
+                }
+                else if (!item.Key.Equals("popupPay"))
+                {
+                    config.Set(item.Key, "false");
+                }
+            }
+
+            config.Write(filename);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void setRadioChecks()
+        {
+            if (config.Get("popupPay").Equals("true"))
+            {
+                popupWindow.Checked = true;
+            }
+
+
+            string radioChecked = "";
+
+            foreach (KeyValuePair<string, object> item in config.GetDict().ToList())
+            {
+                if (!item.Key.Equals("popupPay") && item.Value.Equals("true"))
+                {
+                    radioChecked = (string)item.Key;
+                }
+            }
+
+            switch (radioChecked)
+            {
+                case "LabelIsVisible":
+                    MessageBox.Show("(labelisvis)initial key in config " + radioChecked);
+
+                    radioLabel.Checked = true;
+                    break;
+                case "ButtonIsVisible":
+                    MessageBox.Show("(bttns is vis)initial key in config " + radioChecked);
+
+                    radioButton.Checked = true;
+                    break;
+                case "DropIsVisible":
+                    MessageBox.Show("drops is vis: " + radioChecked);
+                    radioDropdown.Checked = true;
+                    break;
+                case "ImageIsVisible":
+                    MessageBox.Show("(imgisvis)initial key in config " + radioChecked);
+
+                    radioImage.Checked = true;
+                    break;
+                default:
+                    break;
+            }
+            //MessageBox.Show("initial key in config " + radioChecked);
+
+        }
+
+        private void radioWindow_CheckedChanged(object sender, EventArgs e)
+        {
+            config.Set("popupPay", "false");
+            config.Write(filename);
+        }
+
+        private void PopupWindow_CheckedChanged(object sender, EventArgs e)
+        {
+            config.Set("popupPay", "true");
+            config.Write(filename);
+        }
+
+        private void radioLabel_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("reachedlabelradiocheckchange method");
+            toggleRadio("LabelIsVisible");
         }
     }
 }

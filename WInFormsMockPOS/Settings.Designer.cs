@@ -34,10 +34,11 @@
             this.radioDropdown = new System.Windows.Forms.RadioButton();
             this.radioLabel = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.PopupWindow = new System.Windows.Forms.RadioButton();
+            this.popupWindow = new System.Windows.Forms.RadioButton();
             this.radioWindow = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.okBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -48,20 +49,22 @@
             this.radioButton.Location = new System.Drawing.Point(7, 35);
             this.radioButton.Name = "radioButton";
             this.radioButton.Size = new System.Drawing.Size(61, 17);
-            this.radioButton.TabIndex = 1;
+            this.radioButton.TabIndex = 2;
             this.radioButton.Text = "Buttons";
             this.radioButton.UseVisualStyleBackColor = true;
             this.radioButton.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // groupBox1
             // 
+            this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.okBtn);
             this.groupBox1.Controls.Add(this.radioImage);
             this.groupBox1.Controls.Add(this.radioDropdown);
             this.groupBox1.Controls.Add(this.radioLabel);
             this.groupBox1.Controls.Add(this.radioButton);
             this.groupBox1.Location = new System.Drawing.Point(12, 31);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(149, 145);
+            this.groupBox1.Size = new System.Drawing.Size(263, 205);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -71,7 +74,7 @@
             this.radioImage.Location = new System.Drawing.Point(7, 81);
             this.radioImage.Name = "radioImage";
             this.radioImage.Size = new System.Drawing.Size(59, 17);
-            this.radioImage.TabIndex = 3;
+            this.radioImage.TabIndex = 4;
             this.radioImage.Text = "Images";
             this.radioImage.UseVisualStyleBackColor = true;
             this.radioImage.CheckedChanged += new System.EventHandler(this.radioImage_CheckedChanged);
@@ -82,7 +85,7 @@
             this.radioDropdown.Location = new System.Drawing.Point(7, 58);
             this.radioDropdown.Name = "radioDropdown";
             this.radioDropdown.Size = new System.Drawing.Size(74, 17);
-            this.radioDropdown.TabIndex = 2;
+            this.radioDropdown.TabIndex = 3;
             this.radioDropdown.Text = "Dropdown";
             this.radioDropdown.UseVisualStyleBackColor = true;
             this.radioDropdown.CheckedChanged += new System.EventHandler(this.radioDropdown_CheckedChanged);
@@ -93,14 +96,14 @@
             this.radioLabel.Location = new System.Drawing.Point(7, 12);
             this.radioLabel.Name = "radioLabel";
             this.radioLabel.Size = new System.Drawing.Size(56, 17);
-            this.radioLabel.TabIndex = 0;
+            this.radioLabel.TabIndex = 1;
             this.radioLabel.Text = "Labels";
             this.radioLabel.UseVisualStyleBackColor = true;
-            this.radioLabel.CheckedChanged += new System.EventHandler(this.radioLabel_CheckedChanged);
+            this.radioLabel.Click += new System.EventHandler(this.radioLabel_Click);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.PopupWindow);
+            this.groupBox2.Controls.Add(this.popupWindow);
             this.groupBox2.Controls.Add(this.radioWindow);
             this.groupBox2.Location = new System.Drawing.Point(167, 31);
             this.groupBox2.Name = "groupBox2";
@@ -108,20 +111,21 @@
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             // 
-            // PopupWindow
+            // popupWindow
             // 
-            this.PopupWindow.AutoSize = true;
-            this.PopupWindow.Location = new System.Drawing.Point(7, 35);
-            this.PopupWindow.Name = "PopupWindow";
-            this.PopupWindow.Size = new System.Drawing.Size(98, 17);
-            this.PopupWindow.TabIndex = 1;
-            this.PopupWindow.TabStop = true;
-            this.PopupWindow.Text = "Popup Window";
-            this.PopupWindow.UseVisualStyleBackColor = true;
+            this.popupWindow.AutoSize = true;
+            this.popupWindow.Location = new System.Drawing.Point(7, 35);
+            this.popupWindow.Name = "popupWindow";
+            this.popupWindow.Size = new System.Drawing.Size(98, 17);
+            this.popupWindow.TabIndex = 1;
+            this.popupWindow.Text = "Popup Window";
+            this.popupWindow.UseVisualStyleBackColor = true;
+            this.popupWindow.CheckedChanged += new System.EventHandler(this.PopupWindow_CheckedChanged);
             // 
             // radioWindow
             // 
             this.radioWindow.AutoSize = true;
+            this.radioWindow.Checked = true;
             this.radioWindow.Location = new System.Drawing.Point(7, 12);
             this.radioWindow.Name = "radioWindow";
             this.radioWindow.Size = new System.Drawing.Size(95, 17);
@@ -129,6 +133,7 @@
             this.radioWindow.TabStop = true;
             this.radioWindow.Text = "Inside Window";
             this.radioWindow.UseVisualStyleBackColor = true;
+            this.radioWindow.CheckedChanged += new System.EventHandler(this.radioWindow_CheckedChanged);
             // 
             // label1
             // 
@@ -147,6 +152,16 @@
             this.label2.Size = new System.Drawing.Size(66, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Pay Settings";
+            // 
+            // okBtn
+            // 
+            this.okBtn.Location = new System.Drawing.Point(182, 163);
+            this.okBtn.Name = "okBtn";
+            this.okBtn.Size = new System.Drawing.Size(75, 23);
+            this.okBtn.TabIndex = 0;
+            this.okBtn.Text = "OK";
+            this.okBtn.UseVisualStyleBackColor = true;
+            this.okBtn.Click += new System.EventHandler(this.button1_Click);
             // 
             // Settings
             // 
@@ -175,9 +190,10 @@
         private System.Windows.Forms.RadioButton radioImage;
         private System.Windows.Forms.RadioButton radioDropdown;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton PopupWindow;
+        private System.Windows.Forms.RadioButton popupWindow;
         private System.Windows.Forms.RadioButton radioWindow;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button okBtn;
     }
 }

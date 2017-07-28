@@ -40,7 +40,11 @@
             this.username = new System.Windows.Forms.Label();
             this.date = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.nameBtn = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.totalLabel = new System.Windows.Forms.Label();
@@ -50,10 +54,7 @@
             this.process = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.nameBtn = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -61,10 +62,10 @@
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.flowLayoutPanel2.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -168,7 +169,7 @@
             this.date.AutoSize = true;
             this.date.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.date.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.date.Location = new System.Drawing.Point(120, 8);
+            this.date.Location = new System.Drawing.Point(168, 8);
             this.date.Name = "date";
             this.date.Size = new System.Drawing.Size(45, 16);
             this.date.TabIndex = 4;
@@ -185,15 +186,53 @@
             this.flowLayoutPanel2.Size = new System.Drawing.Size(528, 366);
             this.flowLayoutPanel2.TabIndex = 8;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingsToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(117, 26);
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.date);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.nameBtn);
+            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.username);
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(425, 35);
+            this.panel1.TabIndex = 9;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Enabled = false;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(72, 29);
+            this.pictureBox1.Size = new System.Drawing.Size(150, 29);
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Visible = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // nameBtn
+            // 
+            this.nameBtn.Location = new System.Drawing.Point(4, 5);
+            this.nameBtn.Name = "nameBtn";
+            this.nameBtn.Size = new System.Drawing.Size(75, 23);
+            this.nameBtn.TabIndex = 10;
+            this.nameBtn.Text = "button1";
+            this.nameBtn.UseVisualStyleBackColor = true;
+            this.nameBtn.Visible = false;
+            this.nameBtn.Click += new System.EventHandler(this.nameBtn_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -296,40 +335,14 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // panel1
+            // comboBox1
             // 
-            this.panel1.Controls.Add(this.date);
-            this.panel1.Controls.Add(this.username);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.nameBtn);
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(197, 35);
-            this.panel1.TabIndex = 9;
-            // 
-            // nameBtn
-            // 
-            this.nameBtn.Location = new System.Drawing.Point(4, 5);
-            this.nameBtn.Name = "nameBtn";
-            this.nameBtn.Size = new System.Drawing.Size(75, 23);
-            this.nameBtn.TabIndex = 10;
-            this.nameBtn.Text = "button1";
-            this.nameBtn.UseVisualStyleBackColor = true;
-            this.nameBtn.Visible = false;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.settingsToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(117, 26);
-            // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.settingsToolStripMenuItem.Text = "Settings";
-            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(6, 7);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 11;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // Form1
             // 
@@ -348,12 +361,12 @@
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.flowLayoutPanel2.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -384,6 +397,7 @@
         private System.Windows.Forms.Label username;
         private System.Windows.Forms.PictureBox pictureBox1;
         protected System.Windows.Forms.Button nameBtn;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
