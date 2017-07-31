@@ -4,38 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Text;
 
 namespace WInFormsMockPOS
 {
-    class TextToImage
+    static class TextToImage
     {
-        public static Image DrawText(String text, Font font, Color textColor, Color backColor)
+        public static Bitmap CreateImageFromText(string Text)
         {
-            // Creating dummy bitmap to get the graphics object
-            Image img = new Bitmap(1, 1);
-            Graphics drawing = Graphics.FromImage(img);
+            // Create the Font object for the image text drawing.
+            Font textFont = new Font("Arial", 12, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 
-            // Measure the string to see how big the image will be
-            SizeF textSize = drawing.MeasureString(text, font);
+            Bitmap ImageObject = new Bitmap(150, 40);
+            // Add the anti aliasing or color settings.
+            Graphics GraphicsObject = Graphics.FromImage(ImageObject);
 
-            // get rid of the dummy values
-            img.Dispose();
-            drawing.Dispose();
+            // Set Background color
+            //GraphicsObject.Clear(System.Drawing.Color.White);
+            // to specify no aliasing
+            GraphicsObject.SmoothingMode = SmoothingMode.Default;
+            GraphicsObject.TextRenderingHint = TextRenderingHint.SystemDefault;
+            GraphicsObject.DrawString(Text, textFont, new SolidBrush(System.Drawing.Color.Black), 0, 0);
+            GraphicsObject.Flush();
 
-            // Paint the background
-            drawing.Clear(backColor);
-
-            // Create the brush for the text
-            Brush textBrush = new SolidBrush(textColor);
-
-            drawing.DrawString(text, font, textBrush, 0, 0);
-
-            drawing.Save();
-
-            textBrush.Dispose();
-            drawing.Dispose();
-
-            return img;
+            return (ImageObject);
         }
     }
 }

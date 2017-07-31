@@ -7,11 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
-using System.Windows.Media;
 using AppSettingsLib;
+
 
 namespace WInFormsMockPOS
 {
@@ -84,7 +83,7 @@ namespace WInFormsMockPOS
             pay.Enabled = false;
 
             // setting usernames for image, button, dropdown
-            pictureBox1.Image = CreateImageFromText(User);
+            pictureBox1.Image = TextToImage.CreateImageFromText(User);
             pictureBox1.Enabled = true;
             nameBtn.Text = User;
             comboBox1.Items.Add(User);
@@ -112,25 +111,7 @@ namespace WInFormsMockPOS
             return str.Equals("true") ? true : false;
         }
 
-        private Bitmap CreateImageFromText(string Text)
-        {
-            // Create the Font object for the image text drawing.
-            Font textFont = new Font("Arial", 12, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-
-            Bitmap ImageObject = new Bitmap(150, 40);
-            // Add the anti aliasing or color settings.
-            Graphics GraphicsObject = Graphics.FromImage(ImageObject);
-
-            // Set Background color
-            //GraphicsObject.Clear(System.Drawing.Color.White);
-            // to specify no aliasing
-            GraphicsObject.SmoothingMode = SmoothingMode.Default;
-            GraphicsObject.TextRenderingHint = TextRenderingHint.SystemDefault;
-            GraphicsObject.DrawString(Text, textFont, new SolidBrush(System.Drawing.Color.Black), 0, 0);
-            GraphicsObject.Flush();
-
-            return (ImageObject);
-        }
+      
 
         private void createTableHeaders()
         {
@@ -249,7 +230,7 @@ namespace WInFormsMockPOS
             
         }
 
-        // Updates the amount required AND handles the process button
+        // Updates the amount required AND handles the process button enabled
         private void updateTenderedRequired()
         {
             updateRequired();
@@ -287,13 +268,13 @@ namespace WInFormsMockPOS
             }
         }
 
-        // updates the tender required when user is entering how much will be paid
+        // Updates the tender required when user is entering how much will be paid
         private void tendered_TextChanged(object sender, EventArgs e)
         {
             updateTenderedRequired();
         }
 
-        // adds transaction then resets everything
+        // Adds transaction then resets everything
         private void process_Click(object sender, EventArgs e)
         {
             updateProcess();
@@ -324,14 +305,14 @@ namespace WInFormsMockPOS
            
         }
 
-        // Clears the table
+        // Clears the table on click
         private void clear_Click(object sender, EventArgs e)
         {
             clearAll();
 
         }
 
-        //clear
+        // Clears the table and the total
         public void clearAll()
         {
             table.Rows.Clear();
@@ -351,19 +332,15 @@ namespace WInFormsMockPOS
             pay.Enabled = true;
         }
 
-        // hold ctrl and click pay for a new window
-        private void pay_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left && Control.ModifierKeys == Keys.Control)
-            {
-                //ctrHeld = true;
-                //MessageBox.Show("ctrl and leftClick");
-                
-                
-            }
-             
-            
-        }
+        //// Hold ctrl and click pay for a new window
+        //private void pay_MouseUp(object sender, MouseEventArgs e)
+        //{
+        //    if (e.Button == MouseButtons.Left && Control.ModifierKeys == Keys.Control)
+        //    {
+        //        //ctrHeld = true;
+        //        //MessageBox.Show("ctrl and leftClick"); 
+        //    }
+        //}
 
         private void popupWindow()
         {
@@ -374,6 +351,8 @@ namespace WInFormsMockPOS
             required.Visible = false;
             process.Visible = false;
             cancel.Visible = false;
+
+            // popup pay window
             Popup pop = new Popup();
             pop.ShowDialog();
             config.Read(filename);
@@ -406,18 +385,20 @@ namespace WInFormsMockPOS
 
         }
 
+        // Right click 'settings' window
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form settingForm = new Settings(this);
             settingForm.ShowDialog();
             config.Read(filename);
 
-            // Have to update image  box and combobox
-            pictureBox1.Image = CreateImageFromText(User);
+            // Have to update image, comboBox, and Button containers with correct user
+            pictureBox1.Image = TextToImage.CreateImageFromText(User);
             comboBox1.SelectedIndex = comboBox1.FindString(User);
             nameBtn.Text = User;
             username.Text = User;
 
+            // Gets the correct settings from the settings.config file
             ButtonIsVisible = stringToBool((string)config.Get("ButtonIsVisible"));
             LabelIsVisible = stringToBool((string)config.Get("LabelIsVisible"));
             ImageIsVisible = stringToBool((string)config.Get("ImageIsVisible"));
@@ -425,15 +406,17 @@ namespace WInFormsMockPOS
             
         }
 
+        // Changes user on click (for picture/image labels)
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
             currentUser = user[new Random().Next(0, 5)];
             User = currentUser.getFirstName();
-            pictureBox1.Image = CreateImageFromText(User);
+            pictureBox1.Image = TextToImage.CreateImageFromText(User);
 
         }
 
+        // Changes user on click (for button)
         private void nameBtn_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
@@ -442,6 +425,7 @@ namespace WInFormsMockPOS
             nameBtn.Text = User;
         }
 
+        // Updates User when a new 'user' is picked using the comboBox
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
            User = comboBox1.SelectedItem.ToString();

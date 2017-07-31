@@ -50,7 +50,6 @@ namespace WInFormsMockPOS
                 if (item.Key.Equals(str))
                 {
                     config.Set(item.Key, "true");
-                   // MessageBox.Show(str + " is now true");
 
                 }
                 else if (!item.Key.Equals("popupPay"))
@@ -88,22 +87,15 @@ namespace WInFormsMockPOS
             switch (radioChecked)
             {
                 case "LabelIsVisible":
-                    MessageBox.Show("(labelisvis)initial key in config " + radioChecked);
-
                     radioLabel.Checked = true;
                     break;
                 case "ButtonIsVisible":
-                    MessageBox.Show("(bttns is vis)initial key in config " + radioChecked);
-
                     radioButton.Checked = true;
                     break;
                 case "DropIsVisible":
-                    MessageBox.Show("drops is vis: " + radioChecked);
                     radioDropdown.Checked = true;
                     break;
                 case "ImageIsVisible":
-                    MessageBox.Show("(imgisvis)initial key in config " + radioChecked);
-
                     radioImage.Checked = true;
                     break;
                 default:
@@ -127,7 +119,6 @@ namespace WInFormsMockPOS
 
         private void radioLabel_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("reachedlabelradiocheckchange method");
             toggleRadio("LabelIsVisible");
         }
     }
