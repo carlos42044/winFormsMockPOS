@@ -3,4 +3,7 @@ A simple mock POS system designed for testing purposes. This system was built us
 
 # Prequisites
 Install [Visual Studio 2017 Community Edition](https://www.visualstudio.com/downloads/) 
+Make sure to download all of the necessary packages/add-ons necessary for developing winform apps (You will be prompted during VS installation).
+
 # Installing
+The project includes a .exe ready to run! No installation necessary.
