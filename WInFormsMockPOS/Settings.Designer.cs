@@ -30,17 +30,18 @@
         {
             this.radioButton = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.okBtn = new System.Windows.Forms.Button();
             this.radioImage = new System.Windows.Forms.RadioButton();
             this.radioDropdown = new System.Windows.Forms.RadioButton();
             this.radioLabel = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.popupWindow = new System.Windows.Forms.RadioButton();
             this.radioWindow = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.okBtn = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.comboBoxProduct = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // radioButton
@@ -57,6 +58,7 @@
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.okBtn);
             this.groupBox1.Controls.Add(this.radioImage);
             this.groupBox1.Controls.Add(this.radioDropdown);
@@ -64,9 +66,20 @@
             this.groupBox1.Controls.Add(this.radioButton);
             this.groupBox1.Location = new System.Drawing.Point(12, 31);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(263, 205);
+            this.groupBox1.Size = new System.Drawing.Size(269, 205);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Username Settings";
+            // 
+            // okBtn
+            // 
+            this.okBtn.Location = new System.Drawing.Point(182, 163);
+            this.okBtn.Name = "okBtn";
+            this.okBtn.Size = new System.Drawing.Size(75, 23);
+            this.okBtn.TabIndex = 0;
+            this.okBtn.Text = "OK";
+            this.okBtn.UseVisualStyleBackColor = true;
+            this.okBtn.Click += new System.EventHandler(this.button1_Click);
             // 
             // radioImage
             // 
@@ -107,9 +120,10 @@
             this.groupBox2.Controls.Add(this.radioWindow);
             this.groupBox2.Location = new System.Drawing.Point(167, 31);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(108, 138);
+            this.groupBox2.Size = new System.Drawing.Size(108, 75);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Pay Settings";
             // 
             // popupWindow
             // 
@@ -135,41 +149,30 @@
             this.radioWindow.UseVisualStyleBackColor = true;
             this.radioWindow.CheckedChanged += new System.EventHandler(this.radioWindow_CheckedChanged);
             // 
-            // label1
+            // groupBox3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Username Settings";
+            this.groupBox3.Controls.Add(this.comboBoxProduct);
+            this.groupBox3.Location = new System.Drawing.Point(155, 81);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(108, 76);
+            this.groupBox3.TabIndex = 5;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Product Settings";
             // 
-            // label2
+            // comboBoxProduct
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(164, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Pay Settings";
-            // 
-            // okBtn
-            // 
-            this.okBtn.Location = new System.Drawing.Point(182, 163);
-            this.okBtn.Name = "okBtn";
-            this.okBtn.Size = new System.Drawing.Size(75, 23);
-            this.okBtn.TabIndex = 0;
-            this.okBtn.Text = "OK";
-            this.okBtn.UseVisualStyleBackColor = true;
-            this.okBtn.Click += new System.EventHandler(this.button1_Click);
+            this.comboBoxProduct.FormattingEnabled = true;
+            this.comboBoxProduct.Location = new System.Drawing.Point(6, 30);
+            this.comboBoxProduct.Name = "comboBoxProduct";
+            this.comboBoxProduct.Size = new System.Drawing.Size(84, 21);
+            this.comboBoxProduct.TabIndex = 0;
+            this.comboBoxProduct.SelectedIndexChanged += new System.EventHandler(this.comboBoxProduct_selectedIndexChanged);
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(287, 235);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Settings";
@@ -178,6 +181,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,8 +196,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton popupWindow;
         private System.Windows.Forms.RadioButton radioWindow;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button okBtn;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ComboBox comboBoxProduct;
     }
 }

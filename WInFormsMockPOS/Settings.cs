@@ -13,7 +13,8 @@ namespace WInFormsMockPOS
 {
     public partial class Settings : Form
     {
-        string filename = @"C:\Users\CarlosF\Documents\Visual Studio 2017\Projects\WInFormsMockPOS\WInFormsMockPOS\settings.config";
+        string filename = Form1.filename;
+
         Config config = new Config();
 
         public Form1 parent;
@@ -24,7 +25,7 @@ namespace WInFormsMockPOS
             parent = form1;
             config.Read(filename);
             setRadioChecks();
-
+            fillComboBox();
         }
 
 
@@ -120,6 +121,29 @@ namespace WInFormsMockPOS
         private void radioLabel_Click(object sender, EventArgs e)
         {
             toggleRadio("LabelIsVisible");
+        }
+
+        private void fillComboBox()
+        {
+            foreach (KeyValuePair<string, object> item in config.GetDict().ToList())
+            {
+                if (item.Key.StartsWith("Product"))
+                {
+                    comboBoxProduct.Items.Add((string)item.Value);
+                }
+                else if (item.Key.StartsWith("selected"))
+                {
+                    comboBoxProduct.SelectedIndex = comboBoxProduct.Items.IndexOf(item.Value);
+                }
+            }
+
+        }
+
+        private void comboBoxProduct_selectedIndexChanged(object sender, EventArgs e)
+        {
+            Form1.productData = (string)comboBoxProduct.SelectedItem;
+            config.Set("selectedProduct", Form1.productData);
+            config.Write(filename);
         }
     }
 }

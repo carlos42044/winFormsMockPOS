@@ -10,19 +10,27 @@ using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using AppSettingsLib;
+using System.IO;
 
 
 namespace WInFormsMockPOS
 {
     public partial class Form1 : Form
     {
-        string filename = @"C:\Users\CarlosF\Documents\Visual Studio 2017\Projects\WInFormsMockPOS\WInFormsMockPOS\settings.config";
+
+        // Path to the settings.config file
+        public static string filename = @System.IO.Path.ChangeExtension(System.Reflection.Assembly.GetExecutingAssembly().Location, ".config");// + "\\settings.config";
+
         Config config = new Config();
 
         // Variables for Employee and Product objects
         Employee[] user = new Employee[5];
-        Product[] items = new Product[6];
+        List<Product> items = new List<Product>();
         Employee currentUser;
+
+        // Variables for the productData set
+        public static string productData;
+        public static string productFilename = @Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\proudcts-" + productData + ".xml";
 
         // Table variables
         public static DataTable  table = new DataTable();
@@ -67,12 +75,28 @@ namespace WInFormsMockPOS
         public Form1()
         {
             updateName();
-            updateProducts();
             InitializeComponent();
             currentUser = user[new Random().Next(0, 5)];
             User = currentUser.getFirstName();
             username.Text = currentUser.getFirstName();
             timer1.Start();
+
+            if (!System.IO.File.Exists(filename))
+            {
+                config.Set("LabelIsVisible", "true");
+                config.Set("ButtonIsVisible", "false");
+                config.Set("ImageIsVisible", "false");
+                config.Set("DropIsVisible", "false");
+                config.Set("popupPay", "false");
+                config.Set("ProductNuts", "Nuts");
+                config.Set("ProductFruit", "Fruits");
+                config.Set("ProductVegetables", "Vegetables");
+                config.Set("ProductCheese", "Cheeses");
+                config.Set("selectedProduct", "Nuts");
+                config.Write(filename);
+                config.Read(filename);
+            }
+
             try
             {
                 createTableHeaders();
@@ -99,6 +123,10 @@ namespace WInFormsMockPOS
             }
 
             config.Read(filename);
+
+            productData = (string)config.Get("selectedProduct");
+            productFilename = @Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\proudcts-" + productData + ".xml";
+            updateProducts();
 
             ButtonIsVisible = stringToBool((string)config.Get("ButtonIsVisible"));  
             LabelIsVisible = stringToBool((string)config.Get("LabelIsVisible"));
@@ -151,13 +179,20 @@ namespace WInFormsMockPOS
 
         private void updateProducts()
         {
-            // Random cheese products
-            String[] products = { "Asiago", "Chedder", "Parmesan", "Swiss", "American", "PepperJack" };
-            double[] prices = { .99, 1.20, .50, 1.25, 1.99, 1.12 };
+            //// Random cheese products
+            //String[] products = { "Asiago", "Chedder", "Parmesan", "Swiss", "American", "PepperJack" };
+            //double[] prices = { .99, 1.20, .50, 1.25, 1.99, 1.12 };
 
-            for (int i = 0; i < items.Length; i++)
+            //for (int i = 0; i < items.Length; i++)
+            //{
+            //    items[i] = new Product(products[i], prices[i]);
+            //}
+            items.Clear();
+            productFilename = @Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\proudcts-" + productData + ".xml";
+            DataTable table = config.load(productFilename);
+            foreach (DataRow row in table.Rows)
             {
-                items[i] = new Product(products[i], prices[i]);
+                items.Add(new Product((string)row["description"], (double)row["price"]));
             }
         }
 
@@ -175,7 +210,6 @@ namespace WInFormsMockPOS
         private void timer1_Tick(object sender, EventArgs e)
         {
             date.Text = DateTime.Now.ToLongTimeString();
-
         }
 
         // "add" item button
@@ -185,7 +219,7 @@ namespace WInFormsMockPOS
 
             pay.Enabled = true;
             Random rnd = new Random();
-            Product newItem = items[rnd.Next(0, items.Length)];
+            Product newItem = items[rnd.Next(0, items.Count)];
             int quantity = rnd.Next(1, 4);
             double total = (double)quantity * newItem.getPrice();
 
@@ -196,8 +230,6 @@ namespace WInFormsMockPOS
             Total = String.Format("{0:#.00}", runningTotal);
             totalLabel.Text = Total;
             updateRequired();
-            this.Refresh();
-
         }
 
         // Updates the "required: xx.xx" text box
@@ -391,6 +423,8 @@ namespace WInFormsMockPOS
             Form settingForm = new Settings(this);
             settingForm.ShowDialog();
             config.Read(filename);
+            productData = (string)config.Get("selectedProduct");
+            updateProducts();
 
             // Have to update image, comboBox, and Button containers with correct user
             pictureBox1.Image = TextToImage.CreateImageFromText(User);

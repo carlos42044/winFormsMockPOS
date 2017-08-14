@@ -43,9 +43,9 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.nameBtn = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.totalLabel = new System.Windows.Forms.Label();
@@ -169,7 +169,7 @@
             this.date.AutoSize = true;
             this.date.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.date.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.date.Location = new System.Drawing.Point(168, 8);
+            this.date.Location = new System.Drawing.Point(410, 7);
             this.date.Name = "date";
             this.date.Size = new System.Drawing.Size(45, 16);
             this.date.TabIndex = 4;
@@ -202,26 +202,15 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.date);
-            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.nameBtn);
             this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.date);
             this.panel1.Controls.Add(this.username);
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(425, 35);
+            this.panel1.Size = new System.Drawing.Size(519, 35);
             this.panel1.TabIndex = 9;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Enabled = false;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(150, 29);
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // nameBtn
             // 
@@ -242,6 +231,17 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 11;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Enabled = false;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(150, 29);
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // flowLayoutPanel1
             // 
